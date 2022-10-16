@@ -46,7 +46,7 @@ class brute():
 
 
     def start(self,slen,elen):
-        for i in range(slen-1,elen+1):
+        for i in range(slen,elen+1):
             for text in tqdm(self.gentext(i)):
                 md5h = self.md5(text)
                 db.insert(text,md5h)
