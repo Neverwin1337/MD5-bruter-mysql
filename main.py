@@ -23,7 +23,7 @@ class conmysql():
         
         try:
    
-            self.cursor.execute(f"INSERT INTO {self.table} VALUES (NULL,'{text}','{hash}')")
+            self.cursor.execute(f"INSERT INTO {self.table} VALUES ('{text}','{hash}')")
    
             self.db.commit()
         except Exception as e:
