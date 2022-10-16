@@ -55,7 +55,7 @@ class brute():
 
 if __name__ == "__main__":
     bruter = brute()
-    db = conmysql("20.196.84.78","root","a4b3c2d1","hash","MD5") #dbIP username pwd database table
+    db = conmysql("127.0.0.1","root","root","hash","MD5") #dbIP username pwd database table
     bruter.start(1,3)
     db.db.close()
 
