@@ -1,3 +1,4 @@
+from asyncio import Task
 import pymysql
 from itertools import product
 from time import sleep
@@ -26,7 +27,7 @@ class conmysql():
             self.cursor.execute(f"INSERT INTO {self.table} VALUES ('{text}','{hash}')")
    
             self.db.commit()
-        except Exception as e:
+        except:
    
             print(e)
             self.db.rollback()
@@ -34,9 +35,9 @@ class conmysql():
 
 
 class brute():
-
+    
     def gentext(self,x=1):
-        iter = ['1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ']  
+        iter = ['0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ']  
         for r in iter:
             for repeat in range(x,x+1):
                 for ps in product(r,repeat=repeat):
@@ -46,7 +47,10 @@ class brute():
 
 
     def start(self,slen,elen):
+        self.task = []
         for i in range(slen,elen+1):
+            self.task.append(i)
+        for i in self.task:
             for text in tqdm(self.gentext(i)):
                 md5h = self.md5(text)
                 db.insert(text,md5h)
@@ -54,8 +58,13 @@ class brute():
 
 
 if __name__ == "__main__":
-    bruter = brute()
-    db = conmysql("127.0.0.1","root","root","hash","MD5") #dbIP username pwd database table
-    bruter.start(1,3)
-    db.db.close()
+    try:
+        bruter = brute()
+        db = conmysql("20.196.84.78","root","a4b3c2d1","hash","MD5") #dbIP username pwd database table
+        bruter.start(4,4)
+    except:
+        pass
+    
+    finally:
+        db.db.close()
 
