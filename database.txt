@@ -1,0 +1,8 @@
+create database hash;
+CREATE TABLE `MD5` (
+  
+  `text` varchar(64) NOT NULL,
+  `hash` varchar(64) NOT NULL,
+   PRIMARY KEY (`text`)
+  
+);
