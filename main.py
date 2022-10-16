@@ -29,7 +29,7 @@ class conmysql():
             self.db.commit()
         except:
    
-            print(e)
+            
             self.db.rollback()
 
 
